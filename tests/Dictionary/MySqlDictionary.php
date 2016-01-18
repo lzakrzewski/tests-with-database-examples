@@ -17,7 +17,7 @@ trait MySqlDictionary
             'driver'   => 'pdo_mysql',
             'user'     => 'root',
             'password' => '',
-            'dbname'   => 'doctrine-database-test',
+            'dbname'   => 'database-test',
         ];
     }
 

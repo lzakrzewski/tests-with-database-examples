@@ -2,30 +2,19 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Doctrine\ORM\Tools\Setup;
+use Lucaszz\TestsWithDatabaseExamples\EntityManagerFactory;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
-    /** @var bool */
-    private static $isDBCreated;
-
     /** @var EntityManager */
     private $entityManager;
 
     /** {@inheritdoc} */
     protected function setUp()
     {
-        $this->entityManager = $this->createEntityManager();
-
-        if (!self::$isDBCreated) {
-            $this->setupDatabase();
-            self::$isDBCreated = true;
-        }
+        $this->entityManager = EntityManagerFactory::create($this->getParams());
     }
 
     /** {@inheritdoc} */
@@ -57,15 +46,4 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     abstract protected function setupDatabase();
 
     abstract protected function getParams();
-
-    private function createEntityManager()
-    {
-        $entityPath = [__DIR__.'/../src/Entity'];
-        $config     = Setup::createAnnotationMetadataConfiguration($entityPath, false);
-        $driver     = new AnnotationDriver(new AnnotationReader(), $entityPath);
-        AnnotationRegistry::registerLoader('class_exists');
-        $config->setMetadataDriverImpl($driver);
-
-        return EntityManager::create($this->getParams(), $config);
-    }
 }

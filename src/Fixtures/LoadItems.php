@@ -16,7 +16,7 @@ class LoadItems extends AbstractFixture
                 continue;
             }
 
-            for ($itemOfTypeIdx = 1; $itemOfTypeIdx <= 10; ++$itemOfTypeIdx) {
+            for ($itemOfTypeIdx = 1; $itemOfTypeIdx <= 50; ++$itemOfTypeIdx) {
                 $item = new $class($this->itemName($class, $itemOfTypeIdx), rand(1, 1000) / 10);
                 $manager->persist($item);
             }

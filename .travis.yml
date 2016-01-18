@@ -8,5 +8,8 @@ before_install:
   - composer self-update
   - composer install
 
+before_script:
+  - bin/console setup:database
+
 script:
   - vendor/bin/phpunit

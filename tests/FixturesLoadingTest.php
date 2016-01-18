@@ -5,8 +5,10 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Lucaszz\TestsWithDatabaseExamples\Entity\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Fixtures\LoadItems;
+use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
 use Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary\MySqlDictionary;
 
 class FixturesLoadingTest extends TestCase
@@ -21,7 +23,10 @@ class FixturesLoadingTest extends TestCase
     {
         $this->loadWholeFixtures();
 
-        $this->assertThatThereIsTeapot();
+        $items = ListOfItems::create($this->getEntityManager())
+            ->get(1, 2);
+
+        $this->assertCount(2, $items);
     }
 
     /**
@@ -30,14 +35,20 @@ class FixturesLoadingTest extends TestCase
      */
     public function items_on_list_could_be_paginated_more_efficient()
     {
-        $this->add(new Teapot('teapot', 1.0));
+        $this->givenDatabaseIsClear();
 
-        $this->assertThatThereIsTeapot();
+        $this->add(new Teapot('brand-new-teapot', 10.0));
+        $this->add(new Phone('amazing-phone', 400.0));
+
+        $items = ListOfItems::create($this->getEntityManager())
+            ->get(1, 2);
+
+        $this->assertCount(2, $items);
     }
 
     public function items()
     {
-        return array_fill(1, 100, []);
+        return array_fill(1, 500, []);
     }
 
     private function loadWholeFixtures()
@@ -48,10 +59,5 @@ class FixturesLoadingTest extends TestCase
         $purger   = new ORMPurger();
         $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($loader->getFixtures());
-    }
-
-    private function assertThatThereIsTeapot()
-    {
-        $this->assertNotEmpty($this->getEntityManager()->getRepository(Teapot::class)->findAll());
     }
 }
