@@ -16,7 +16,7 @@
         "psr-4" : { "Lucaszz\\TestsWithDatabaseExamples\\Tests\\" : "tests" }
     },
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.6",
         "doctrine/orm": "~2.5",
         "doctrine/data-fixtures": "~1.1"
     },
