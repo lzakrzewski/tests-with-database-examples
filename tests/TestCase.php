@@ -4,6 +4,7 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
@@ -39,6 +40,18 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getEntityManager()
     {
         return $this->entityManager;
+    }
+
+    protected function add($object)
+    {
+        $this->entityManager->persist($object);
+        $this->entityManager->flush();
+    }
+
+    protected function givenDatabaseIsClear()
+    {
+        $purger = new ORMPurger($this->entityManager);
+        $purger->purge();
     }
 
     abstract protected function setupDatabase();

@@ -37,7 +37,7 @@ class FixturesLoadingTest extends TestCase
 
     public function items()
     {
-        return array_fill(1, 50, [null]);
+        return array_fill(1, 100, []);
     }
 
     private function loadWholeFixtures()
@@ -48,12 +48,6 @@ class FixturesLoadingTest extends TestCase
         $purger   = new ORMPurger();
         $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($loader->getFixtures());
-    }
-
-    private function add($object)
-    {
-        $this->getEntityManager()->persist($object);
-        $this->getEntityManager()->flush();
     }
 
     private function assertThatThereIsTeapot()

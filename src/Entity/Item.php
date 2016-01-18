@@ -5,7 +5,23 @@ namespace Lucaszz\TestsWithDatabaseExamples\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap(
+ *      {
+ *          "apple" = "Apple",
+ *          "beer" = "Beer",
+ *          "blender" = "Blender",
+ *          "glass" = "Glass",
+ *          "hairDryer" = "HairDryer",
+ *          "juice" = "Juice",
+ *          "mango" = "Mango",
+ *          "phone" = "Phone",
+ *          "teapot" = "Teapot",
+ *          "water" = "Water",
+ *      }
+ *  )
  */
 abstract class Item
 {
