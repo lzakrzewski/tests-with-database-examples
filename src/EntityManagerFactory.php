@@ -14,7 +14,8 @@ final class EntityManagerFactory
     {
         $entityPath = [__DIR__.'/Entity'];
         $config     = Setup::createAnnotationMetadataConfiguration($entityPath, false);
-        $driver     = new AnnotationDriver(new AnnotationReader(), $entityPath);
+
+        $driver = new AnnotationDriver(new AnnotationReader(), $entityPath);
         AnnotationRegistry::registerLoader('class_exists');
         $config->setMetadataDriverImpl($driver);
 
