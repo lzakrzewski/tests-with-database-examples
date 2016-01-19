@@ -3,7 +3,7 @@
 namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\ORM\EntityManager;
-use Lucaszz\TestsWithDatabaseExamples\EntityManagerFactory;
+use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 
 class EntityManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

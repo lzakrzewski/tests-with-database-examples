@@ -3,13 +3,14 @@
 namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Lucaszz\TestsWithDatabaseExamples\Entity\Phone;
-use Lucaszz\TestsWithDatabaseExamples\Entity\Teapot;
+use Lucaszz\TestsWithDatabaseExamples\Component\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
+use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
+use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 
 class PurgeDatabaseTest extends TestCase
 {
-    use \Lucaszz\TestsWithDatabaseExamples\Dictionary\MySqlDictionary;
+    use MySqlDictionary;
 
     /**
      * @test

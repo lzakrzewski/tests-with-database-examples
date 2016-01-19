@@ -1,10 +1,10 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Fixtures;
+namespace Lucaszz\TestsWithDatabaseExamples\Component\Fixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Lucaszz\TestsWithDatabaseExamples\Entity\Item;
+use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 class LoadItems extends AbstractFixture
 {

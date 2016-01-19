@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Entity;
+namespace Lucaszz\TestsWithDatabaseExamples\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 

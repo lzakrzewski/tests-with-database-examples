@@ -1,10 +1,10 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Dictionary;
+namespace Lucaszz\TestsWithDatabaseExamples\Component\Dictionary;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\Entity\Item;
+use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 trait MySqlDictionary
 {

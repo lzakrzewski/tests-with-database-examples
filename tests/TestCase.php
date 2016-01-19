@@ -4,7 +4,7 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
-use Lucaszz\TestsWithDatabaseExamples\EntityManagerFactory;
+use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {

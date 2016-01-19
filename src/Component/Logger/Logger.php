@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Logger;
+namespace Lucaszz\TestsWithDatabaseExamples\Component\Logger;
 
 use Doctrine\DBAL\Logging\SQLLogger;
 use Psr\Log\LoggerInterface;

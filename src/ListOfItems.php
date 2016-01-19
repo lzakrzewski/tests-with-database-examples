@@ -5,7 +5,7 @@ namespace Lucaszz\TestsWithDatabaseExamples;
 use Assert\Assertion;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Lucaszz\TestsWithDatabaseExamples\Entity\Item;
+use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 final class ListOfItems
 {
