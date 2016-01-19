@@ -7,6 +7,8 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
+use Lucaszz\TestsWithDatabaseExamples\Logger\Logger;
+use Monolog\Logger as MonologLogger;
 
 final class EntityManagerFactory
 {
@@ -14,6 +16,9 @@ final class EntityManagerFactory
     {
         $entityPath = [__DIR__.'/Entity'];
         $config     = Setup::createAnnotationMetadataConfiguration($entityPath, false);
+        $handler    = new \Monolog\Handler\StreamHandler((__DIR__.'/../logs/dev.log'), 100, true, null);
+        $logger     = new Logger(new MonologLogger('app', [$handler]));
+        $config->setSQLLogger($logger);
 
         $driver = new AnnotationDriver(new AnnotationReader(), $entityPath);
         AnnotationRegistry::registerLoader('class_exists');

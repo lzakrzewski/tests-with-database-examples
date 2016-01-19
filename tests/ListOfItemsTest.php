@@ -6,11 +6,10 @@ use Lucaszz\TestsWithDatabaseExamples\Entity\Beer;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Juice;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
-use Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary\MySqlDictionary;
 
 class ListOfItemsTest extends TestCase
 {
-    use MySqlDictionary;
+    use \Lucaszz\TestsWithDatabaseExamples\Dictionary\MySqlDictionary;
 
     /** @test */
     public function it_can_have_list_of_items()

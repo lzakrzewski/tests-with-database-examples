@@ -3,8 +3,8 @@
 namespace Lucaszz\TestsWithDatabaseExamples\Command;
 
 use Doctrine\ORM\EntityManager;
+use Lucaszz\TestsWithDatabaseExamples\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\EntityManagerFactory;
-use Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary\MySqlDictionary;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

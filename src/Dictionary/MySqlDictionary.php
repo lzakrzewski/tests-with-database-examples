@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary;
+namespace Lucaszz\TestsWithDatabaseExamples\Dictionary;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\SchemaTool;

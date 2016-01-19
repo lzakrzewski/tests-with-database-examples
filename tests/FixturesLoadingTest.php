@@ -5,11 +5,11 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Lucaszz\TestsWithDatabaseExamples\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Fixtures\LoadItems;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
-use Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary\MySqlDictionary;
 
 class FixturesLoadingTest extends TestCase
 {

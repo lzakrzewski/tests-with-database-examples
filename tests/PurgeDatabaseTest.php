@@ -6,11 +6,10 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Entity\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
-use Lucaszz\TestsWithDatabaseExamples\Tests\Dictionary\MySqlDictionary;
 
 class PurgeDatabaseTest extends TestCase
 {
-    use MySqlDictionary;
+    use \Lucaszz\TestsWithDatabaseExamples\Dictionary\MySqlDictionary;
 
     /**
      * @test
