@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     {
         return $this->entityManager;
     }
-
+    /** Todo: It should be flushed only once */
     protected function add($object)
     {
         $this->entityManager->persist($object);

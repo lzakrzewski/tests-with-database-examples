@@ -71,4 +71,12 @@ abstract class Item
             Water::class,
         ];
     }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
 }
