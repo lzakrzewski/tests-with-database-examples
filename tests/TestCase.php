@@ -4,6 +4,8 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
+use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
+use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -14,7 +16,17 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /** {@inheritdoc} */
     protected function setUp()
     {
-        $this->entityManager = EntityManagerFactory::create($this->getParams());
+        $this->givenMysqlDatabaseWasConnected();
+    }
+
+    protected function givenMysqlDatabaseWasConnected()
+    {
+        $this->entityManager = EntityManagerFactory::create(MysqlConfig::getParams());
+    }
+
+    protected function givenSqliteDatabaseWasConnected()
+    {
+        $this->entityManager = EntityManagerFactory::create(SqliteConfig::getParams());
     }
 
     /** {@inheritdoc} */
@@ -42,8 +54,4 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $purger = new ORMPurger($this->entityManager);
         $purger->purge();
     }
-
-    abstract protected function setupDatabase();
-
-    abstract protected function getParams();
 }

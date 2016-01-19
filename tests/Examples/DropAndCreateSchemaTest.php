@@ -4,7 +4,6 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\Component\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
@@ -13,8 +12,6 @@ use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
 class DropAndCreateSchemaTest extends TestCase
 {
-    use MySqlDictionary;
-
     /**
      * @test
      * @dataProvider items

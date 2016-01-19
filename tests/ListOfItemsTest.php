@@ -2,7 +2,6 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
-use Lucaszz\TestsWithDatabaseExamples\Component\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Beer;
 use Lucaszz\TestsWithDatabaseExamples\Model\Juice;
@@ -10,8 +9,6 @@ use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 
 class ListOfItemsTest extends TestCase
 {
-    use MySqlDictionary;
-
     /** @test */
     public function it_can_have_list_of_items()
     {

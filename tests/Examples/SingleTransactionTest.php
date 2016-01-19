@@ -3,7 +3,6 @@
 namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Lucaszz\TestsWithDatabaseExamples\Component\Dictionary\MySqlDictionary;
 use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
@@ -11,8 +10,6 @@ use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
 class SingleTransactionTest extends TestCase
 {
-    use MySqlDictionary;
-
     /**
      * @test
      * @dataProvider items

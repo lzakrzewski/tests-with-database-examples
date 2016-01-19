@@ -9,7 +9,8 @@ before_install:
   - composer install
 
 before_script:
-  - bin/console setup:database
+  - bin/console setup:mysql-database
+  - bin/console setup:sqlite-database
 
 script:
   - vendor/bin/phpunit
