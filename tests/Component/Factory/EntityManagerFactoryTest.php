@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests;
+namespace Lucaszz\TestsWithDatabaseExamples\Tests\Component\Factory;
 
 use Doctrine\ORM\EntityManager;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
