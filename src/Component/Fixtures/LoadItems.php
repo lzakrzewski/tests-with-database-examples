@@ -4,6 +4,7 @@ namespace Lucaszz\TestsWithDatabaseExamples\Component\Fixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 class LoadItems extends AbstractFixture
@@ -11,7 +12,7 @@ class LoadItems extends AbstractFixture
     /** {@inheritdoc} */
     public function load(ObjectManager $manager)
     {
-        foreach (Item::getClasses() as $class) {
+        foreach (Mapping::mappedClasses() as $class) {
             if ($class == Item::class) {
                 continue;
             }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples;
+namespace Lucaszz\TestsWithDatabaseExamples\Application\Projection;
 
 use Assert\Assertion;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
-final class ListOfItems
+final class ListOfItemsProjection
 {
     /** @var ObjectRepository */
     private $items;
@@ -23,7 +23,7 @@ final class ListOfItems
     /**
      * @param ObjectManager $objectManager
      *
-     * @return ListOfItems
+     * @return ListOfItemsProjection
      */
     public static function create(ObjectManager $objectManager)
     {
@@ -45,6 +45,6 @@ final class ListOfItems
         Assertion::greaterThan($page, 0, 'Page should be grater than 0');
         Assertion::greaterThan($itemsPerPage, 0, 'ItemsPerPage should be grater than 0');
 
-        return array_slice($this->items->findAll(), $page - 1, $itemsPerPage);
+        return array_slice($this->items->findBy([], ['price' => 'ASC']), $page - 1, $itemsPerPage);
     }
 }

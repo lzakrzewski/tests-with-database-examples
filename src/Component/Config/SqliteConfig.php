@@ -4,6 +4,10 @@ namespace Lucaszz\TestsWithDatabaseExamples\Component\Config;
 
 final class SqliteConfig
 {
+    private function __construct()
+    {
+    }
+
     /**
      * @return array
      */

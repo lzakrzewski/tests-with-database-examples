@@ -2,45 +2,37 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Model;
 
+use Assert\Assertion;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap(
- *      {
- *          "apple" = "Apple",
- *          "beer" = "Beer",
- *          "blender" = "Blender",
- *          "glass" = "Glass",
- *          "hairDryer" = "HairDryer",
- *          "juice" = "Juice",
- *          "mango" = "Mango",
- *          "phone" = "Phone",
- *          "teapot" = "Teapot",
- *          "water" = "Water",
- *      }
- *  )
+ * @ORM\Table(name="items")
  */
-abstract class Item
+final class Item
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
-    protected $name;
+    private $name;
 
     /**
      * @ORM\Column(type="decimal", scale=2)
      */
-    protected $price;
+    private $price;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @param string $name
@@ -50,33 +42,41 @@ abstract class Item
     {
         $this->name  = $name;
         $this->price = $price;
+
+        $this->createdAt = Carbon::now();
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public static function getClasses()
+    public function name()
     {
-        return [
-            Apple::class,
-            Beer::class,
-            Blender::class,
-            Glass::class,
-            HairDryer::class,
-            self::class,
-            Juice::class,
-            Mango::class,
-            Phone::class,
-            Teapot::class,
-            Water::class,
-        ];
+        return $this->name;
     }
 
     /**
-     * @param mixed $price
+     * @return float
      */
-    public function setPrice($price)
+    public function price()
     {
-        $this->price = $price;
+        return $this->price;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function createdAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param float $param
+     */
+    public function applyDiscount($param)
+    {
+        Assertion::float($param);
+
+        $this->price = (float) $this->price * $param;
     }
 }

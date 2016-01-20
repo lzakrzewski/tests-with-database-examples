@@ -4,8 +4,8 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
+use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
+use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
@@ -23,7 +23,7 @@ class DropAndCreateSchemaTest extends TestCase
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItems::create($this->getEntityManager())
+        $items = ListOfItemsProjection::create($this->getEntityManager())
             ->get(1, 2);
 
         $this->assertCount(2, $items);
@@ -40,7 +40,7 @@ class DropAndCreateSchemaTest extends TestCase
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItems::create($this->getEntityManager())
+        $items = ListOfItemsProjection::create($this->getEntityManager())
             ->get(1, 2);
 
         $this->assertCount(2, $items);
@@ -57,7 +57,7 @@ class DropAndCreateSchemaTest extends TestCase
 
         $metadata = [];
 
-        foreach (Item::getClasses() as $class) {
+        foreach (Mapping::mappedClasses() as $class) {
             $metadata[] = $this->getEntityManager()->getClassMetadata($class);
         }
 

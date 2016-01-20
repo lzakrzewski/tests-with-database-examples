@@ -13,6 +13,10 @@ use Monolog\Logger as MonologLogger;
 
 final class EntityManagerFactory
 {
+    private function __construct()
+    {
+    }
+
     public static function create(array $params)
     {
         $entityPath = [__DIR__.'/../../Model'];

@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
+use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -42,11 +43,22 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     {
         return $this->entityManager;
     }
-    /** Todo: It should be flushed only once */
+
     protected function add($object)
     {
         $this->entityManager->persist($object);
         $this->entityManager->flush();
+    }
+
+    protected function findItemByName($name)
+    {
+        $item = $this->entityManager->getRepository(Item::class)->findOneBy(['name' => $name]);
+
+        if (null === $item) {
+            throw new \InvalidArgumentException(sprintf('Item with name %s does not exist.', $name));
+        }
+
+        return $item;
     }
 
     protected function givenDatabaseIsClear()

@@ -4,6 +4,11 @@
     <testsuites>
         <testsuite name="tests">
             <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/Examples</exclude>
+        </testsuite>
+
+        <testsuite name="examples">
+            <directory suffix="Test.php">./tests/Examples</directory>
         </testsuite>
     </testsuites>
 

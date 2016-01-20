@@ -6,7 +6,7 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
+use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -41,7 +41,7 @@ class SetupSqliteDatabaseCommand extends Command
 
         $metadata = [];
 
-        foreach (Item::getClasses() as $class) {
+        foreach (Mapping::mappedClasses() as $class) {
             $metadata[] = $entityManager->getClassMetadata($class);
         }
 

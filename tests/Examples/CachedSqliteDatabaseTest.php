@@ -5,9 +5,9 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
-use Lucaszz\TestsWithDatabaseExamples\ListOfItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
@@ -29,7 +29,7 @@ class CachedSqliteDatabaseTest extends TestCase
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItems::create($this->getEntityManager())
+        $items = ListOfItemsProjection::create($this->getEntityManager())
             ->get(1, 2);
 
         $this->assertCount(2, $items);
@@ -57,7 +57,7 @@ class CachedSqliteDatabaseTest extends TestCase
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItems::create($this->getEntityManager())
+        $items = ListOfItemsProjection::create($this->getEntityManager())
             ->get(1, 2);
 
         $this->assertCount(2, $items);

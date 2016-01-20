@@ -20,7 +20,8 @@
         "doctrine/orm": "~2.5",
         "doctrine/data-fixtures": "~1.1",
         "beberlei/assert": "~2.0",
-        "symfony/console": "~3.0"
+        "symfony/console": "~3.0",
+        "nesbot/carbon": "~1.2"
     },
     "require-dev": {
         "phpunit/phpunit" : "~5.0",
