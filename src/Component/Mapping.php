@@ -2,7 +2,7 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Component;
 
-use Lucaszz\TestsWithDatabaseExamples\Model as Model;
+use Lucaszz\TestsWithDatabaseExamples\Model;
 
 final class Mapping
 {

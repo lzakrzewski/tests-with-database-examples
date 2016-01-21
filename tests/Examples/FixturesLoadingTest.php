@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
+use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
 use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
@@ -17,36 +18,33 @@ class FixturesLoadingTest extends TestCase
      * @test
      * @dataProvider items
      */
-    public function items_on_list_could_be_paginated_inefficient()
+    public function discount_could_be_applied_on_items_in_inefficient_way()
     {
         $this->loadWholeFixtures();
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 2);
+        ApplyDiscountUseCase::create($this->getEntityManager())
+            ->apply(0.5);
 
-        $this->assertCount(2, $items);
+        $this->assertEquals(50, $this->findItemByName('teapot_1')->price());
+        $this->assertEquals(200, $this->findItemByName('phone_1')->price());
     }
 
     /**
      * @test
      * @dataProvider items
      */
-    public function items_on_list_could_be_paginated_more_efficient()
+    public function discount_could_be_applied_on_items_in_more_efficient_way()
     {
         $this->givenDatabaseIsClear();
 
-        $this->add(new Teapot('brand-new-teapot', 10.0));
+        $this->add(new Teapot('brand-new-teapot', 100.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 2);
+        ApplyDiscountUseCase::create($this->getEntityManager())
+            ->apply(0.5);
 
-        $this->assertCount(2, $items);
-    }
-
-    public function items()
-    {
-        return array_fill(1, 500, []);
+        $this->assertEquals(50, $this->findItemByName('brand-new-teapot')->price());
+        $this->assertEquals(200, $this->findItemByName('amazing-phone')->price());
     }
 
     private function loadWholeFixtures()

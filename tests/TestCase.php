@@ -4,6 +4,7 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
@@ -13,11 +14,22 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     /** @var EntityManager */
     private $entityManager;
+    /** @var EntityRepository */
+    private $items;
+
+    /**
+     * @return array
+     */
+    public function items()
+    {
+        return array_fill(1, 10, []);
+    }
 
     /** {@inheritdoc} */
     protected function setUp()
     {
         $this->givenMysqlDatabaseWasConnected();
+        $this->items = $this->entityManager->getRepository(Item::class);
     }
 
     protected function givenMysqlDatabaseWasConnected()
@@ -34,6 +46,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->entityManager = null;
+        $this->items = null;
     }
 
     /**
@@ -52,7 +65,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function findItemByName($name)
     {
-        $item = $this->entityManager->getRepository(Item::class)->findOneBy(['name' => $name]);
+        $item = $this->items->findOneBy(['name' => $name]);
 
         if (null === $item) {
             throw new \InvalidArgumentException(sprintf('Item with name %s does not exist.', $name));
@@ -63,7 +76,12 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function givenDatabaseIsClear()
     {
-        $purger = new ORMPurger($this->entityManager);
-        $purger->purge();
+        if (0 !== count($this->items->findAll())) {
+
+            echo 'purgekurwa';
+
+            $purger = new ORMPurger($this->entityManager);
+            $purger->purge();
+        }
     }
 }

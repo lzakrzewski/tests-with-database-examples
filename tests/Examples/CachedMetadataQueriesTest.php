@@ -4,24 +4,19 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
-use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
-class CachedSqliteDatabaseTest extends TestCase
+class CachedMetadataQueriesTest extends TestCase
 {
-    /** @var bool */
-    private static $backupInMemory = null;
-
     /**
      * @test
      * @dataProvider items
      */
     public function discount_could_be_applied_on_items_in_more_efficient_way()
     {
-        $this->givenSqliteDatabaseWasConnected();
-        $this->restoreClearDatabaseFromMemory();
+        $this->executedCachedQueryToPurgeDatabase();
 
         $this->add(new Teapot('brand-new-teapot', 100.0));
         $this->add(new Phone('amazing-phone', 400.0));

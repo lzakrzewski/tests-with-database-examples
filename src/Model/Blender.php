@@ -41,6 +41,7 @@ class Blender
     {
         $this->item = new Item($name, $price);
 
+        $this->powerUse = 500;
         $this->brand          = 'Unitra';
         $this->expirationDate = Carbon::now()->addDays(155);
     }

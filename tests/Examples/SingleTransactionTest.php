@@ -33,6 +33,7 @@ class SingleTransactionTest extends TestCase
      */
     public function items_on_list_could_be_paginated_more_efficient()
     {
+        $this->givenDatabaseIsClear();
         $this->getEntityManager()->beginTransaction();
 
         $this->add(new Teapot('brand-new-teapot', 10.0));
@@ -44,11 +45,6 @@ class SingleTransactionTest extends TestCase
         $this->assertCount(2, $items);
 
         $this->getEntityManager()->rollback();
-    }
-
-    public function items()
-    {
-        return array_fill(1, 500, []);
     }
 
     private function purgeDatabase()
