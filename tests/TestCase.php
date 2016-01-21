@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
+use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -22,7 +23,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     public function items()
     {
-        return array_fill(1, 10, []);
+        return array_fill(1, LoadItems::COUNT, []);
     }
 
     /** {@inheritdoc} */
@@ -46,7 +47,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->entityManager = null;
-        $this->items = null;
+        $this->items         = null;
     }
 
     /**
@@ -77,9 +78,6 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function givenDatabaseIsClear()
     {
         if (0 !== count($this->items->findAll())) {
-
-            echo 'purgekurwa';
-
             $purger = new ORMPurger($this->entityManager);
             $purger->purge();
         }

@@ -2,7 +2,7 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\DBAL\Schema\Table;
 use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
@@ -10,6 +10,9 @@ use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
 class CachedMetadataQueriesTest extends TestCase
 {
+    /** @var string */
+    private static $purgeQueryInMemory;
+
     /**
      * @test
      * @dataProvider items
@@ -28,23 +31,49 @@ class CachedMetadataQueriesTest extends TestCase
         $this->assertEquals(200, $this->findItemByName('amazing-phone')->price());
     }
 
-    private function restoreClearDatabaseFromMemory()
+    private function executedCachedQueryToPurgeDatabase()
     {
-        $path = SqliteConfig::getParams()['path'];
+        $conn = $this->getEntityManager()->getConnection();
 
-        if (!self::$backupInMemory) {
-            $this->purgeDatabase();
-            self::$backupInMemory = file_get_contents($path);
+        if (null !== self::$purgeQueryInMemory) {
+            $conn->exec(self::$purgeQueryInMemory);
+
+            return;
         }
 
-        if (self::$backupInMemory) {
-            file_put_contents($path, self::$backupInMemory);
+        $tables = $this->orderedTables($conn->getSchemaManager()->listTables());
+
+        $tableNames = array_map(function (Table $table) {
+            return $table->getName();
+        }, $tables);
+
+        self::$purgeQueryInMemory = '';
+
+        foreach ($tableNames as $tableName) {
+            self::$purgeQueryInMemory .= sprintf('DELETE FROM %s;', $tableName);
         }
+
+        $conn->exec(self::$purgeQueryInMemory);
     }
 
-    private function purgeDatabase()
+    private function orderedTables(array $unorderedTables)
     {
-        $purger = new ORMPurger($this->getEntityManager());
-        $purger->purge();
+        $orderedTables = [];
+
+        foreach ($unorderedTables as $table) {
+            $foreignKeys = $table->getForeignKeys();
+            if (!empty($foreignKeys)) {
+                $orderedTables[] = $table;
+            }
+        }
+
+        foreach ($unorderedTables as $table) {
+            $foreignKeys = $table->getForeignKeys();
+            if (empty($foreignKeys)) {
+                $orderedTables[] = $table;
+            }
+        }
+
+        return $orderedTables;
     }
 }

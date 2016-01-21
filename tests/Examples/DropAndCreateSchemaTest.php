@@ -4,7 +4,6 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
 use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
 use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
