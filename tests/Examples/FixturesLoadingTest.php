@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
+use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
@@ -17,7 +18,7 @@ class FixturesLoadingTest extends TestCase
      * @test
      * @dataProvider items
      */
-    public function discount_could_be_applied_on_items_in_inefficient_way()
+    public function loading_whole_fixtures()
     {
         $this->loadWholeFixtures();
 
@@ -32,7 +33,7 @@ class FixturesLoadingTest extends TestCase
      * @test
      * @dataProvider items
      */
-    public function discount_could_be_applied_on_items_in_more_efficient_way()
+    public function loading_minimal_fixtures()
     {
         $this->givenDatabaseIsClear();
 
@@ -46,6 +47,22 @@ class FixturesLoadingTest extends TestCase
         $this->assertEquals(200, $this->findItemByName('amazing-phone')->price());
     }
 
+    /**
+     * @test
+     * @dataProvider items
+     */
+    public function loading_whole_fixtures_from_cached_copy()
+    {
+        $this->givenSqliteDatabaseWasConnected();
+        $this->loadWholeFixturesFromCachedCopy();
+
+        ApplyDiscountUseCase::create($this->getEntityManager())
+            ->apply(0.5);
+
+        $this->assertEquals(50, $this->findItemByName('teapot_1')->price());
+        $this->assertEquals(200, $this->findItemByName('phone_1')->price());
+    }
+
     private function loadWholeFixtures()
     {
         $loader = new Loader();
@@ -54,5 +71,21 @@ class FixturesLoadingTest extends TestCase
         $purger   = new ORMPurger();
         $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($loader->getFixtures());
+    }
+
+    private function loadWholeFixturesFromCachedCopy()
+    {
+        $path       = SqliteConfig::getParams()['path'];
+        $backupPath = $path.'.bck';
+
+        if (!file_exists($backupPath)) {
+            $purger = new ORMPurger($this->getEntityManager());
+            $purger->purge();
+            $this->loadWholeFixtures();
+
+            file_put_contents($backupPath, file_get_contents($path));
+        }
+
+        file_put_contents($path, file_get_contents($backupPath));
     }
 }
