@@ -46,6 +46,6 @@ class LoadItems extends AbstractFixture
     {
         $reflection = new \ReflectionClass($class);
 
-        return sprintf('%s_%d', $reflection->getShortName(), $itemOfTypeIdx);
+        return sprintf('%s_%d', strtolower($reflection->getShortName()), $itemOfTypeIdx);
     }
 }

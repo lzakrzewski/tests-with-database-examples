@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository")
  * @ORM\Table(name="items")
  */
 final class Item

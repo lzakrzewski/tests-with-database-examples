@@ -68,7 +68,7 @@ class FixturesLoadingTest extends TestCase
         $loader = new Loader();
         $loader->addFixture(new LoadItems());
 
-        $purger   = new ORMPurger();
+        $purger   = new ORMPurger($this->getEntityManager());
         $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($loader->getFixtures());
     }
@@ -79,8 +79,6 @@ class FixturesLoadingTest extends TestCase
         $backupPath = $path.'.bck';
 
         if (!file_exists($backupPath)) {
-            $purger = new ORMPurger($this->getEntityManager());
-            $purger->purge();
             $this->loadWholeFixtures();
 
             file_put_contents($backupPath, file_get_contents($path));

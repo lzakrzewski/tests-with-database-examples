@@ -2,32 +2,31 @@
 
 namespace Lucaszz\TestsWithDatabaseExamples\Application\UseCase;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
+use Doctrine\ORM\EntityManager;
+use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
 
 final class ApplyDiscountUseCase
 {
-    /** @var ObjectRepository */
+    /** @var ItemRepository */
     private $items;
-    /** @var ObjectManager */
-    private $objectManager;
+    /** @var EntityManager */
+    private $entityManager;
 
     /**
-     * @param ObjectManager $objectManager
+     * @param EntityManager $objectManager
      */
-    private function __construct(ObjectManager $objectManager)
+    private function __construct(EntityManager $objectManager)
     {
-        $this->objectManager = $objectManager;
-        $this->items         = $objectManager->getRepository(Item::class);
+        $this->entityManager = $objectManager;
+        $this->items         = ItemRepository::create($objectManager);
     }
 
     /**
-     * @param ObjectManager $objectManager
+     * @param EntityManager $objectManager
      *
      * @return ApplyDiscountUseCase
      */
-    public static function create(ObjectManager $objectManager)
+    public static function create(EntityManager $objectManager)
     {
         return new self($objectManager);
     }
@@ -37,10 +36,12 @@ final class ApplyDiscountUseCase
      */
     public function apply($discount)
     {
-        foreach ($this->items->findAll() as $item) {
-            $item->applyDiscount($discount);
-        }
+        $this->entityManager->transactional(function () use ($discount) {
+            foreach ($this->items->findAll() as $item) {
+                $item->applyDiscount($discount);
+            }
+        });
 
-        $this->objectManager->flush();
+        $this->entityManager->clear();
     }
 }

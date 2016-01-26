@@ -1,18 +1,18 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Application\Projection;
+namespace Lucaszz\TestsWithDatabaseExamples\Tests\Application\Persistence;
 
 use Carbon\Carbon;
-use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
+use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
 use Lucaszz\TestsWithDatabaseExamples\Model\Beer;
 use Lucaszz\TestsWithDatabaseExamples\Model\Juice;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
-class ListOfItemsProjectionTest extends TestCase
+class ItemRepositoryTest extends TestCase
 {
     /** @test */
-    public function it_can_have_list_of_items()
+    public function it_can_paginate_items()
     {
         $this->givenDatabaseIsClear();
 
@@ -20,14 +20,14 @@ class ListOfItemsProjectionTest extends TestCase
         $this->add(new Beer('tasty-beer', 40));
         $this->add(new Juice('orange', 13));
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 10);
+        $items = ItemRepository::create($this->getEntityManager())
+            ->paginate(1, 10);
 
         $this->assertCount(3, $items);
     }
 
     /** @test */
-    public function it_can_have_list_sorted_with_the_smallest_price_first()
+    public function it_can_paginate_items_sorted_with_the_smallest_price_firs()
     {
         $this->givenDatabaseIsClear();
 
@@ -35,8 +35,8 @@ class ListOfItemsProjectionTest extends TestCase
         $this->add(new Beer('tasty-beer', 40));
         $this->add(new Juice('orange', 13));
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 10);
+        $items = ItemRepository::create($this->getEntityManager())
+            ->paginate(1, 10);
 
         $this->assertEquals('orange', $items[0]->name());
         $this->assertEquals('tasty-beer', $items[1]->name());
@@ -48,8 +48,8 @@ class ListOfItemsProjectionTest extends TestCase
     {
         $this->givenDatabaseIsClear();
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 10);
+        $items = ItemRepository::create($this->getEntityManager())
+            ->paginate(1, 10);
 
         $this->assertEmpty($items);
     }
@@ -65,8 +65,8 @@ class ListOfItemsProjectionTest extends TestCase
 
         $this->add(new Teapot('new-teapot', 100.3));
 
-        ListOfItemsProjection::create($this->getEntityManager())
-            ->get($page, $itemsPerPage);
+        ItemRepository::create($this->getEntityManager())
+            ->paginate($page, $itemsPerPage);
     }
 
     public function invalidArguments()

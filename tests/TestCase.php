@@ -5,11 +5,11 @@ namespace Lucaszz\TestsWithDatabaseExamples\Tests;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -30,17 +30,18 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->givenMysqlDatabaseWasConnected();
-        $this->items = $this->entityManager->getRepository(Item::class);
     }
 
     protected function givenMysqlDatabaseWasConnected()
     {
         $this->entityManager = EntityManagerFactory::create(MysqlConfig::getParams());
+        $this->items         = ItemRepository::create($this->getEntityManager());
     }
 
     protected function givenSqliteDatabaseWasConnected()
     {
         $this->entityManager = EntityManagerFactory::create(SqliteConfig::getParams());
+        $this->items         = ItemRepository::create($this->getEntityManager());
     }
 
     /** {@inheritdoc} */

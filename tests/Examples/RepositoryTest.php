@@ -3,26 +3,26 @@
 namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Lucaszz\TestsWithDatabaseExamples\Application\Projection\ListOfItemsProjection;
+use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
 
-class SingleTransactionTest extends TestCase
+class RepositoryTest extends TestCase
 {
     /**
      * @test
      * @dataProvider items
      */
-    public function items_on_list_could_be_paginated_inefficient()
+    public function purge_database()
     {
         $this->purgeDatabase();
 
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 2);
+        $items = ItemRepository::create($this->getEntityManager())
+            ->paginate(1, 2);
 
         $this->assertCount(2, $items);
     }
@@ -31,7 +31,7 @@ class SingleTransactionTest extends TestCase
      * @test
      * @dataProvider items
      */
-    public function items_on_list_could_be_paginated_more_efficient()
+    public function reverting_transaction()
     {
         $this->givenDatabaseIsClear();
         $this->getEntityManager()->beginTransaction();
@@ -39,8 +39,8 @@ class SingleTransactionTest extends TestCase
         $this->add(new Teapot('brand-new-teapot', 10.0));
         $this->add(new Phone('amazing-phone', 400.0));
 
-        $items = ListOfItemsProjection::create($this->getEntityManager())
-            ->get(1, 2);
+        $items = ItemRepository::create($this->getEntityManager())
+            ->paginate(1, 2);
 
         $this->assertCount(2, $items);
 
