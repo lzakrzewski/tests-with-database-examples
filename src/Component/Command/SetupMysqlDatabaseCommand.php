@@ -6,7 +6,6 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
 use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
-use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -47,12 +46,7 @@ class SetupMysqlDatabaseCommand extends Command
         $tmpConnection->getSchemaManager()->createDatabase($nameEscaped);
         $schemaTool = new SchemaTool($entityManager);
 
-        $metadata = [];
-
-        foreach (Mapping::mappedClasses() as $class) {
-            $metadata[] = $entityManager->getClassMetadata($class);
-        }
-
+        $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool->createSchema($metadata);
     }
 }

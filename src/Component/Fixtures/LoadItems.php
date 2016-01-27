@@ -28,7 +28,7 @@ class LoadItems extends AbstractFixture
     /** {@inheritdoc} */
     public function load(ObjectManager $manager)
     {
-        foreach (Mapping::mappedClasses() as $class) {
+        foreach (array_keys($this->prices) as $class) {
             if ($class == Model\Item::class) {
                 continue;
             }

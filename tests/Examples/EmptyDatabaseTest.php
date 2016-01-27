@@ -6,7 +6,6 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\ORM\Tools\SchemaTool;
 use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
-use Lucaszz\TestsWithDatabaseExamples\Component\Mapping;
 use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
 use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
 use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
@@ -73,12 +72,7 @@ class EmptyDatabaseTest extends TestCase
     private function dropAndCreateSchema()
     {
         $schemaTool = new SchemaTool($this->getEntityManager());
-
-        $metadata = [];
-
-        foreach (Mapping::mappedClasses() as $class) {
-            $metadata[] = $this->getEntityManager()->getClassMetadata($class);
-        }
+        $metadata   = $this->getEntityManager()->getMetadataFactory()->getAllMetadata();
 
         $schemaTool->dropSchema($metadata);
         $schemaTool->createSchema($metadata);
