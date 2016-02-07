@@ -1,19 +1,19 @@
 {
-    "name": "lucaszz/tests-with-database-examples",
+    "name": "lzakrzewski/tests-with-database-examples",
     "type": "library",
     "authors": [
         {
-            "name": "Lucaszz",
-            "email": "lucaszz111@gmail.com"
+            "name": "lzakrzewski",
+            "email": "contact@lzakrzewski.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Lucaszz\\TestsWithDatabaseExamples\\": "src"
+            "Lzakrzewski\\TestsWithDatabaseExamples\\": "src"
         }
     },
     "autoload-dev": {
-        "psr-4" : { "Lucaszz\\TestsWithDatabaseExamples\\Tests\\" : "tests" }
+        "psr-4" : { "Lzakrzewski\\TestsWithDatabaseExamples\\Tests\\" : "tests" }
     },
     "require": {
         "php": ">=5.6",

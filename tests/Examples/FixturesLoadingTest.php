@@ -1,16 +1,16 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
-use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
-use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
-use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
-use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
-use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Phone;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Teapot;
+use Lzakrzewski\TestsWithDatabaseExamples\Tests\TestCase;
 
 class FixturesLoadingTest extends TestCase
 {

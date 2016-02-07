@@ -6,6 +6,6 @@ require __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\Console\Application;
 
 $application = new Application();
-$application->add(new \Lucaszz\TestsWithDatabaseExamples\Component\Command\SetupMysqlDatabaseCommand());
-$application->add(new \Lucaszz\TestsWithDatabaseExamples\Component\Command\SetupSqliteDatabaseCommand());
+$application->add(new \Lzakrzewski\TestsWithDatabaseExamples\Component\Command\SetupMysqlDatabaseCommand());
+$application->add(new \Lzakrzewski\TestsWithDatabaseExamples\Component\Command\SetupSqliteDatabaseCommand());
 $application->run();

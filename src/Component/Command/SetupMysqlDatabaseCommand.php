@@ -1,11 +1,11 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Component\Command;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Component\Command;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
-use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

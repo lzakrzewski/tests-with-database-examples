@@ -1,9 +1,9 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Application\UseCase;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Application\UseCase;
 
 use Doctrine\ORM\EntityManager;
-use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
 
 final class ApplyDiscountUseCase
 {

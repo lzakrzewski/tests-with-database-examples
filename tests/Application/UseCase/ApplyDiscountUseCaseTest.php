@@ -1,12 +1,12 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Application\UseCase;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Application\UseCase;
 
-use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
-use Lucaszz\TestsWithDatabaseExamples\Model\Beer;
-use Lucaszz\TestsWithDatabaseExamples\Model\Juice;
-use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
-use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Beer;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Juice;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Teapot;
+use Lzakrzewski\TestsWithDatabaseExamples\Tests\TestCase;
 
 class ApplyDiscountUseCaseTest extends TestCase
 {

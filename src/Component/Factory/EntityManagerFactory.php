@@ -1,13 +1,13 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Component\Factory;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Component\Factory;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
-use Lucaszz\TestsWithDatabaseExamples\Component\Logger\Logger;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Logger\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger as MonologLogger;
 

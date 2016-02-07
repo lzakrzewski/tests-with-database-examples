@@ -1,13 +1,13 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Model;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Model;
 
 use Assert\Assertion;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository")
+ * @ORM\Entity(repositoryClass="Lzakrzewski\TestsWithDatabaseExamples\Application\Persistence\ItemRepository")
  * @ORM\Table(name="items")
  */
 final class Item

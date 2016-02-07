@@ -1,8 +1,8 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Model;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Model;
 
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Item;
 
 class ItemTest extends \PHPUnit_Framework_TestCase
 {

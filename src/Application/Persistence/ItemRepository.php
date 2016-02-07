@@ -1,11 +1,11 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Application\Persistence;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Application\Persistence;
 
 use Assert\Assertion;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Lucaszz\TestsWithDatabaseExamples\Model\Item;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Item;
 
 class ItemRepository extends EntityRepository
 {

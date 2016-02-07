@@ -1,8 +1,8 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Component\Logger;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Component\Logger;
 
-use Lucaszz\TestsWithDatabaseExamples\Component\Logger\Logger;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Logger\Logger;
 use Psr\Log\LoggerInterface;
 
 class LoggerTest extends \PHPUnit_Framework_TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Component\Config;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Component\Config;
 
 final class SqliteConfig
 {

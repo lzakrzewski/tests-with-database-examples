@@ -1,12 +1,12 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
-use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
-use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
-use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Phone;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Teapot;
+use Lzakrzewski\TestsWithDatabaseExamples\Tests\TestCase;
 
 class RepositoryTest extends TestCase
 {

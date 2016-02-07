@@ -1,9 +1,9 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Component\Factory;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Component\Factory;
 
 use Doctrine\ORM\EntityManager;
-use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
 
 class EntityManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

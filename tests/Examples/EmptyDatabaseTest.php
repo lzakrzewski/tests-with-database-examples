@@ -1,14 +1,14 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests\Examples;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests\Examples;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\ORM\Tools\SchemaTool;
-use Lucaszz\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
-use Lucaszz\TestsWithDatabaseExamples\Model\Phone;
-use Lucaszz\TestsWithDatabaseExamples\Model\Teapot;
-use Lucaszz\TestsWithDatabaseExamples\Tests\TestCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\UseCase\ApplyDiscountUseCase;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Phone;
+use Lzakrzewski\TestsWithDatabaseExamples\Model\Teapot;
+use Lzakrzewski\TestsWithDatabaseExamples\Tests\TestCase;
 
 class EmptyDatabaseTest extends TestCase
 {

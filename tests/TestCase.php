@@ -1,15 +1,15 @@
 <?php
 
-namespace Lucaszz\TestsWithDatabaseExamples\Tests;
+namespace Lzakrzewski\TestsWithDatabaseExamples\Tests;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Lucaszz\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
-use Lucaszz\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
-use Lucaszz\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
-use Lucaszz\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
-use Lucaszz\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
+use Lzakrzewski\TestsWithDatabaseExamples\Application\Persistence\ItemRepository;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Config\MysqlConfig;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Config\SqliteConfig;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Factory\EntityManagerFactory;
+use Lzakrzewski\TestsWithDatabaseExamples\Component\Fixtures\LoadItems;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
