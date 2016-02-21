@@ -9,7 +9,7 @@ use Lzakrzewski\TestsWithDatabaseExamples\Model;
 
 class LoadItems extends AbstractFixture
 {
-    const COUNT = 10;
+    const COUNT = 500;
 
     /** @var array */
     private $prices = [
